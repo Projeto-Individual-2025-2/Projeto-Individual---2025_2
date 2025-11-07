@@ -105,6 +105,17 @@ h1{
     font-size: 20px;
 }
 
+.imagens{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ismart {
+    margin-top: 50px;
+}
+
 .historia{
     height: 500px;
     background-size: cover;
