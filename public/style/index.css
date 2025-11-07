@@ -3,17 +3,29 @@ body{
     font-family:Arial, Helvetica, sans-serif;
 }
 
-header{
+header {
     background-color: #ffff;
-    border-bottom: 3px solid  #0098E4;
+    border-bottom: 4px solid  #0098E4;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
-.titulo{
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+img{
+    height: 60px;
+    width: auto;
+}
+
+h1{
     color: #0B3C5D;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .navbar{
@@ -24,9 +36,89 @@ header{
 .navbar li{
     list-style: none;
     padding: 0 12px;
+
 }
 
 .navbar li a{
     text-decoration: none;
     color: #0B3C5D;
+}
+
+.banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 570px;
+    background-size: cover;
+    background-image: url(../assets/fundo.jpg);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffff;
+    width: 68%;
+    height: 15%;
+    opacity: 0.8;
+}
+
+.container b{
+    color: #0B3C5D;
+    font-size: 50px
+}
+
+.instituicao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 450px;
+    background-size: cover;
+    background-color: #0B3C5D;
+}
+
+.subtitulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12%;
+    width: 30%;
+    background-color: #ffff;
+    box-shadow: 0px 10px 90px 1px;
+    margin-top: 50px;
+}
+
+.subtitulo b{
+    font-size: 30px;
+    font-weight: bolder;
+    color: #0B3C5D
+}
+
+.texto span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #ffff;
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+.historia{
+    height: 500px;
+    background-size: cover;
+    background-color: #ffff;
+}
+
+.sobre{
+    height: 500px;
+    background-size: cover;
+    background-color: #0B3C5D;
+}
+
+.footer{
+    height: 150px;
+    background-size: cover;
+    background-color: #0098E4;
 }
