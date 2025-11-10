@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="style/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="#">
+            <img src="assets/logo.png" alt="" class="logo ConectUs">
+            </a>
+            <h1>ConectUs</h1>
+        </div>
+
+         <ul class="navbar">
+                <li class="listas">
+                <a href="index.html">Home</a>
+                </li>
+                <li>
+                <a href="#">Minha História</a>
+                </li>
+                <li>
+                <a href="#">Sobre a ConectUs</a>
+                </li>
+                <li>|</li>
+                <li>
+                <a href="#">Cadastre-se</a>
+                </li>
+            </ul >
+    </header>
+
+    <main class="container">
+
+        <div>
+            <h1>Bem-vindo à ConectUs!</h1>
+            <div class="input_box">
+                &nbsp;Email:
+                <input type="email" placeholder="   Digite seu email" id="ipt_email">
+                <i class="bx bxs-user"></i>
+            </div>
+
+            <div class="input_box">
+                &nbsp;Senha:
+                <input type="password" placeholder="   Insira sua senha" id="ipt_senha">
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+
+            <button type="submit" class="login" onclick="autenticacao()">Entrar</button>
+
+            <div class="registre">
+                <p>Não tem um cadastro? <b><a href="#"> Registre-se</a></b></p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+
+<script>
+       
+    function autenticacao() {
+        var email = ipt_email.value;
+        var senha = ipt_senha.value; 
+
+        if ((email == 'jamilly.lima@gmail.com' && senha == '18Abrilbirth#')) {
+            alert("Usuário autenticado");
+            window.location.href =''
+        } else {
+            alert("Falha na autenticação");
+        }
+
+    }
+
+</script>
