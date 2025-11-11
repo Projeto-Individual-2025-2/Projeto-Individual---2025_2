@@ -10,6 +10,7 @@ body{
 header {
     position: fixed;
     background-color: #ffff;
+    opacity: 95%;
     border-bottom: 4px solid  #0098E4;
     display: flex;
     justify-content: space-between;
@@ -67,7 +68,7 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 570px;
+    height: 650px;
     background-size: cover;
     background-image: url(../assets/fundo.jpg);
 }
