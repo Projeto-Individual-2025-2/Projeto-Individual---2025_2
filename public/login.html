@@ -6,41 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Login</title>
 </head>
 
 <body>
-    
-    <main class="container">
-        <div>
-            <a href="index.html" class="voltar">
-            <i class="fas fa-arrow-left"></i> Voltar
-            </a>
+    <main>
+            <div class="voltar">
+                <a href="index.html">
+                <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
 
-            <h1>Bem-vindo à ConectUs!</h1>
+            <div class="titulo">
+                <h1>Bem-vindo à ConectUs!</h1>
+            </div>
+
             <div class="input_box">
-                &nbsp;Email:
+                <span>Email:</span>
                 <input type="email" placeholder="  Digite seu email" id="ipt_email">
                 <i class="bx bxs-user"></i>
             </div>
 
             <div class="input_box">
-                &nbsp;Senha:
+                <span>Senha:</span>
                 <input type="password" placeholder="  Insira sua senha" id="ipt_senha">
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
+            <div class="botao">
             <button type="submit" class="login" onclick="autenticacao()">Entrar</button>
+            </div>
 
             <div class="registre">
                 <p>Não tem um cadastro? <b><a href="cadastro.html"> Registre-se</a></b></p>
             </div>
-        </div>
     </main>
 </body>
-
 </html>
-
 
 <script>
        
