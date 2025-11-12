@@ -5,49 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="style/cadastro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div class="container">
-    <a href="index.html" class="voltar">
-    <img src="assets/logo.png" alt="logoConectUs">
-    </a>
+    <div class="container">
+        <div class="voltar">
+            <a href="index.html">
+            <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+        </div>
 
-    <h1>Bem-vindo à ConectUs!</h1>
-            <div class="input-group">
-                <div class="input-box esquerda" >
-                    Nome Completo:
-                    <input placeholder="Nome Completo" type="text" id="input_nomeCompleto">
-                </div>
+        <div class="titulo">
+            <h1>Bem-vindo à ConectUs!</h1>
+        </div>
+       
+        <div class="input-group">
+            <div class="input-box esquerda" >
+                <span>Nome Completo:</span>
+                <input placeholder="Nome Completo" type="text" id="input_nomeCompleto">
+            </div>
 
-                <div class="input-box direita">
-                    CPF: 
-                    <input oninput="analisarCPF()" placeholder="Insira seu CPF" type="text" id="input_cpf">
-                    <div id="div_cpf"></div>
-                </div>
+            <div class="input-box direita">
+                <span>Data de Nascimento:</span>
+                <input oninput="analisardtNasc()" placeholder="DD/MM/AAAA" type="text" id="input_dtNasc">
+                <div id="div_dtNasc"></div>
+            </div>
 
-                <div class="input-box esquerda">
-                    Email: 
-                    <input oninput="analisarEmail()" placeholder="Insira seu email" type="email" id="input_email">
-                    <div id="div_email"></div>
-                </div>
+            <div class="input-box esquerda">
+                <span>Em qual tipo de escola você concluiu seu Ensino Médio?</span>
+                    <select oninput="analisartipoEscola()" id="select_tipoEscola">
+                    <option value="#">Selecione uma opção</option>
+                    <option value="publica">Pública</option>
+                    <option value="privada">Privada</option>
+                    </select>
+                <div id="div_tipoEscola"></div>
+            </div>
 
-                <div class="input-box direita">
-                    Telefone: 
-                    <input oninput="analisarTelefone()" placeholder="Insira seu telefone" type="tel" id="input_telefone">
-                    <div id="div_telefone"></div>
-                </div>
+            <div class="input-box direita">
+                <span>Você conhece alguma das 3 instituições da ConectUs?</span>
+                    <select oninput="analisarConhecimento()" id="select_conhecimento">
+                    <option value="selecione">Selecione uma opção</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+                <div id="div_conhecimento"></div>
+            </div>
 
-                <div class="input-box esquerda">
-                    Senha:
-                    <input oninput="validarSenha()" placeholder="Insira sua senha" type="password" id="input_senha">
-                    <div class="validarSenha" id="div_senha"></div>
-                </div>
+            <div class="input-box esquerda">
+                <span>Senha:</span>
+                <input oninput="validarSenha()" placeholder="Insira sua senha" type="password" id="input_senha">
+                <div class="validarSenha" id="div_senha"></div>
+            </div>
 
-                <div class="input-box direita">
-                    Confirmar Senha: 
-                    <input oninput="confirmarSenha()" placeholder="Confirme sua senha" type="password" id="input_confirmSenha">
-                    <div id="div_confirmSenha"></div>
-                </div>
+            <div class="input-box direita">
+                <span>Confirmar Senha: </span>
+                <input oninput="confirmarSenha()" placeholder="Confirme sua senha" type="password" id="input_confirmSenha">
+                <div id="div_confirmSenha"></div>
+            </div>
 
             </div>
             <div class="button">
@@ -63,16 +79,16 @@
     var listaNumeros = ['1','2','3','4','5','6','7','8','9','0'];
 
     // Variáveis de validação de cadastro
-    var cpfValido = false;
-    var emailValido = false;
-    var telefoneValido = false;
+    var dtNascValido = false;
+    var tipoEscolaValido = false;
+    var conhecimentoValido = false;
     var senhaValida = false;
     var confirmValido = false;
 
-        function cadastrar() {
+    function cadastrar() {
 
     // validações dos campos preechidos para efetuar cadastro
-        if (senhaValida && confirmValido && cpfValido && emailValido && telefoneValido) {
+        if (senhaValida && confirmValido && dtNascValido && tipoEscolaValido && conhecimentoValido) {
                 alert('Cadastro Efetuado!');
                 window.location.href ='login.html';
             } else {
@@ -80,54 +96,38 @@
             } 
         } 
 
-    function analisarCPF() {
-    // Variáveis do campo cpf
-        var cpf = input_cpf.value;
-        var tamanhoCPF = cpf.length;
+    function analisardtNasc() {
+        var dtNasc = input_dtNasc.value;
 
-    // Validção da quantidade de dígitos do cpf e se o valor digitado é um número;
-        if (tamanhoCPF != 11 || isNaN(cpf)){
-            div_cpf.innerHTML = '<span style="color:white"> 11 dígitos numéricos</span>';
+        if (isNaN(dtNasc)){
+            div_dtNasc.innerHTML = '<span style="color:white">Insira uma data válida</span>';
         } else {
-            cpfValido = true;
-            div_cpf.innerHTML = '';
+            dtNascValido = true;
+            div_dtNasc.innerHTML = '';
         }
 
-        if (cpf == '') {
-            div_cpf.innerHTML= '';
+        if (dtNasc == '') {
+            div_dtNasc.innerHTML= '';
         }
     }
 
-    function analisarEmail() {
-    // Variável do campo email
-        var email = input_email.value;
+    function analisartipoEscola() {
+        var tipoEscola = select_tipoEscola.value;
         
-        if (!email.includes('@')) {
-            div_email.innerHTML = '<span style="color:white">Incluir @</span>'
-        } else {
-            emailValido = true;
-            div_email.innerHTML = '';
-        }
-
-        if (email == '') {
-            div_email.innerHTML= '';  
+        if (tipoEscola != '#') {
+            tipoEscolaValido = true;
         }
     }
 
-    function analisarTelefone() {
-    // Variável do campo telefone
-        var tel = input_telefone.value;
-        var tamanhoTel = tel.length;
+    function analisarConhecimento() {
+        var conhecimento = select_conhecimento.value;
 
-       if (isNaN(tel) || tamanhoTel > 11) {
-            div_telefone.innerHTML = '<span style="color:white">Digite um telefone válido</span>'
-        } else {
-            telefoneValido = true;
-            div_telefone.innerHTML = '';
+        if (conhecimento != '#') {
+            conhecimentoValido = true;
         }
 
-        if (tel == '') {
-            div_telefone.innerHTML= '';  
+        if (conhecimento == '') {
+            div_conhecimento.innerHTML= '';  
         } 
     }
 
