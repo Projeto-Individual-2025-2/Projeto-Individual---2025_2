@@ -216,6 +216,16 @@ h1{
     color: #0B3C5D
 }
 
+.texto-sobre{
+    text-align: justify;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#ffffffef;
+    width: 50%;
+    margin-top: 60px;
+}
+
+
 .footer{
     height: 150px;
     background-size: cover;
