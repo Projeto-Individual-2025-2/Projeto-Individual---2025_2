@@ -159,13 +159,12 @@ h1{
 
 /*HISTÓRIA COMEÇO*/
 .historia{
-    height: 600px;
+    height: 530px;
     background-size: cover;
     background-color: #ffff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 50px;
 }
 
 .subtitulo2{
@@ -218,7 +217,7 @@ h1{
 
 /*SOBRE COMEÇO*/
 .sobre{
-    height: 500px;
+    height: 450px;
     background-size: cover;
     display: flex;
     flex-direction: column;
