@@ -54,15 +54,15 @@
             </div>
 
             <div class="input-box esquerda">
-                <span>Senha:</span>
-                <input oninput="validarSenha()" placeholder="Insira sua senha" type="password" id="input_senha">
-                <div class="validarSenha" id="div_senha"></div>
+                <span>Se sim, qual(is)?</span>
+                <input placeholder="Digite sua resposta" type="text" id="input_opcaoInstituicao">
+                <div id="div_opcaoInstituicao"></div>
             </div>
 
             <div class="input-box direita">
-                <span>Confirmar Senha: </span>
-                <input oninput="confirmarSenha()" placeholder="Confirme sua senha" type="password" id="input_confirmSenha">
-                <div id="div_confirmSenha"></div>
+                <span>Senha:</span>
+                <input oninput="validarSenha()" placeholder="Insira sua senha" type="password" id="input_senha">
+                <div class="validarSenha" id="div_senha"></div>
             </div>
 
             </div>
@@ -83,12 +83,11 @@
     var tipoEscolaValido = false;
     var conhecimentoValido = false;
     var senhaValida = false;
-    var confirmValido = false;
 
     function cadastrar() {
 
     // validações dos campos preechidos para efetuar cadastro
-        if (senhaValida && confirmValido && dtNascValido && tipoEscolaValido && conhecimentoValido) {
+        if (senhaValida && dtNascValido && tipoEscolaValido && conhecimentoValido) {
                 alert('Cadastro Efetuado!');
                 window.location.href ='login.html';
             } else {
@@ -99,7 +98,7 @@
     function analisardtNasc() {
         var dtNasc = input_dtNasc.value;
 
-        if (isNaN(dtNasc)){
+        if (dtNasc.length > 10){
             div_dtNasc.innerHTML = '<span style="color:white">Insira uma data válida</span>';
         } else {
             dtNascValido = true;
@@ -125,10 +124,6 @@
         if (conhecimento != '#') {
             conhecimentoValido = true;
         }
-
-        if (conhecimento == '') {
-            div_conhecimento.innerHTML= '';  
-        } 
     }
 
     function validarSenha () {
@@ -197,27 +192,6 @@
     if (tamanhoValido && caractereValido && numeroValido && maiusculoValido && minusculoValido) {
         senhaValida = true;
         }
-    }
-
-    function confirmarSenha() {
-    // Variáveis do campo confirmar senha
-    var senha = input_senha.value;
-    var confirmSenha = input_confirmSenha.value;
-    
-    // Variável de configuração
-    var validacao = "";
-
-        if (senha != confirmSenha) {
-            validacao = '<span style="color:white">Senha Incorreta</span>';
-        } else {
-            confirmValido = true;
-        }
-
-        if (confirmSenha == '') {
-            validacao = "";
-        }
-
-        div_confirmSenha.innerHTML = validacao;
     }
 
 </script>

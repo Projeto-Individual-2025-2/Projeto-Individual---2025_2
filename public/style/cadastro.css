@@ -20,12 +20,16 @@ body {
 }
 /*Final body*/
 
-.voltar img{
+.voltar {
     display: flex;
     justify-content: start;
     align-items: start;
-    width: 100%;
+    width: 90%;
     height: 50px;
+}
+.voltar a{
+    color: #ffff;
+    text-decoration: none;
 }
 
 .titulo h1 {
@@ -85,7 +89,7 @@ body {
 }
 
 .validarSenha {
-    width: 700px;
+    width: 300px;
 }
 /*Final container*/
 
