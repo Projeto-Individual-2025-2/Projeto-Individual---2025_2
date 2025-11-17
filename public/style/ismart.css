@@ -1,0 +1,88 @@
+body{
+    margin: 0px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: #ffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+img{
+    height: 60px;
+    width: auto;
+}
+
+h1{
+    color: #0B3C5D;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 0 50px;
+}
+
+.navbar li{
+    list-style: none;
+    padding: 0 12px;
+
+}
+
+.navbar li a{
+    text-decoration: none;
+    color: #0B3C5D;
+}
+
+.navbar .botao{
+    background-color: #0B3C5D;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .botao a{
+    color: #ffff;
+}
+
+.container{
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #0B3C5D;
+    padding: 20px 0;
+    gap: 30px;
+}
+
+.container .logo-ismart img{
+    height: 130px;
+}
+
+.container .titulo{
+    padding: 5px;
+    margin-top: 45px;
+    background-color: #0098E4;
+    font-size: 30px;
+    font-weight: bold;
+    opacity: 98%;
+    color: #0B3C5D;
+}
+
+.experiencia{
+    background-color:#ffff;
+    background-size: cover;
+    height: 500px;
+}
