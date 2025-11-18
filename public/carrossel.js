@@ -1,20 +1,15 @@
 
+var images = [img1, img2, img3];
 
-var image1 = document.getElementById('img1'); 
-var image2 = document.getElementById('img2'); 
-var image3 = document.getElementById('img3'); 
-
-var images = [image1, image2, image3];
-
-var current = 0;
+var atual = 0;
 
 setInterval(() => {
-  images[current].classList.remove('active');
-  current++;
+  images[atual].classList.remove('active');
+  atual++;
   
-  if (current >= images.length) {
-    current = 0;
+  if (atual >= images.length) {
+    atual = 0;
   }
   
-  images[current].classList.add('active');
+  images[atual].classList.add('active');
 }, 3000);
