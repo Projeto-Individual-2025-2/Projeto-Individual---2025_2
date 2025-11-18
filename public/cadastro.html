@@ -55,7 +55,7 @@
 
             <div class="input-box esquerda">
                 <span>Se sim, qual(is)?</span>
-                <input placeholder="Digite sua resposta" type="text" id="input_opcaoInstituicao">
+                <input placeholder="Digite sua resposta" type="text" id="input_opcaoInstituicao" disabled>
                 <div id="div_opcaoInstituicao"></div>
             </div>
 
@@ -121,8 +121,9 @@
     function analisarConhecimento() {
         var conhecimento = select_conhecimento.value;
 
-        if (conhecimento != '#') {
+        if (conhecimento == 'Sim') {
             conhecimentoValido = true;
+            document.getElementById("input_opcaoInstituicao").disabled = false;
         }
     }
 
