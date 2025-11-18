@@ -85,7 +85,8 @@ h1{
     color: #ffff;
 }
 
-#carousel {
+/*CARROSSEL DE FOTOS*/
+#carrossel {
       width: 400px;
       height: 300px;
       overflow: hidden;
@@ -94,7 +95,7 @@ h1{
       position: relative; 
 }
 
-#carousel img {
+#carrossel img {
       width: 100%;
       height: 100%;
       position: absolute;
@@ -104,7 +105,7 @@ h1{
       transition: opacity 1s ease-in-out;
 }
 
-    #carousel img.active {
+    #carrossel img.active {
       opacity: 1;
     }
 
