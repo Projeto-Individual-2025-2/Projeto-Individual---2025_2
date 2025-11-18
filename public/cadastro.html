@@ -29,7 +29,7 @@
 
             <div class="input-box direita">
                 <span>Data de Nascimento:</span>
-                <input oninput="analisardtNasc()" placeholder="DD/MM/AAAA" type="text" id="input_dtNasc">
+                <input oninput="analisardtNasc()" placeholder="DD/MM/AAAA" type="date" id="input_dtNasc">
                 <div id="div_dtNasc"></div>
             </div>
 
@@ -54,8 +54,13 @@
             </div>
 
             <div class="input-box esquerda">
-                <span>Se sim, qual(is)?</span>
-                <input placeholder="Digite sua resposta" type="text" id="input_opcaoInstituicao" disabled>
+                <span>Se sim, qual?</span>
+                    <select id="select_opcaoInstituicao" disabled>
+                    <option value="selecione">Selecione uma opção</option>
+                    <option value="Ismart">Ismart</option>
+                    <option value="Colegio">Colégio Eng. Salvador Arena</option>
+                    <option value="Colegio">Cuja</option>
+                    </select>
                 <div id="div_opcaoInstituicao"></div>
             </div>
 
@@ -123,7 +128,7 @@
 
         if (conhecimento == 'Sim') {
             conhecimentoValido = true;
-            document.getElementById("input_opcaoInstituicao").disabled = false;
+            document.getElementById("select_opcaoInstituicao").disabled = false;
         }
     }
 
