@@ -29,8 +29,7 @@
 
             <div class="input-box direita">
                 <span>Data de Nascimento:</span>
-                <input oninput="analisardtNasc()" placeholder="DD/MM/AAAA" type="date" id="input_dtNasc">
-                <div id="div_dtNasc"></div>
+                <input type="date" id="input_dtNasc">
             </div>
 
             <div class="input-box esquerda">
@@ -99,21 +98,6 @@
                 alert('Cadastro Inválido! Confira os campos');
             } 
         } 
-
-    function analisardtNasc() {
-        var dtNasc = input_dtNasc.value;
-
-        if (dtNasc.length > 10){
-            div_dtNasc.innerHTML = '<span style="color:white">Insira uma data válida</span>';
-        } else {
-            dtNascValido = true;
-            div_dtNasc.innerHTML = '';
-        }
-
-        if (dtNasc == '') {
-            div_dtNasc.innerHTML= '';
-        }
-    }
 
     function analisartipoEscola() {
         var tipoEscola = select_tipoEscola.value;
