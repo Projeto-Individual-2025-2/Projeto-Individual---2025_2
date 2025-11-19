@@ -77,9 +77,7 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    let proximaAtualizacao;
-
-    window.onload = exibirAquariosDoUsuario();
+    var proximaAtualizacao;
 
     function exibirAquariosDoUsuario() {
         var aquarios = JSON.parse(sessionStorage.AQUARIOS);
