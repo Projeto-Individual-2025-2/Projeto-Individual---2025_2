@@ -345,7 +345,11 @@ canvas {
 }
 
 .header-left h1 {
-  color: #0098E4;
+  display: flex;
+  justify-content: center;
+  background-color: #ffff;
+  color: #0B3C5D;
+  width: 60%;
 }
 
 .hello {

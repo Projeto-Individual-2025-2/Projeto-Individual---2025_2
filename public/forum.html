@@ -10,8 +10,8 @@
 
     <link rel="stylesheet" href="style/painel.css">
     <link rel="stylesheet" href="style/estilo.css" />
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
+    <script src="../sessao.js"></script>
+    <script src="../alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -19,7 +19,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+<body onload="validarSessao(), atualizarFeed()" style="background-color: white;">
 
     <div class="janela">
 
@@ -120,7 +120,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
+                window.location = "painel.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
