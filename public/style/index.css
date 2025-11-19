@@ -145,14 +145,41 @@ h1{
     height: 60%;
 }
 
+.img1{
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.img1:hover {
+    transform: scale(1.1);
+}
+
 .colegio img{
     width: 100%;
     height: 60%;
 }
 
+.img2{
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.img2:hover {
+    transform: scale(1.1);
+}
+
 .cuja img{
     width: 100%;
     height: 60%;
+}
+
+.img3{
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.img3:hover {
+    transform: scale(1.1);
 }
 
 /*INSITUIÇÕES FIM*/
