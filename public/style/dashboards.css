@@ -368,7 +368,6 @@ canvas {
   width: 40%;
   color: white;
   background-color: #0098E4;
-  border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
 }
@@ -376,8 +375,6 @@ canvas {
 .btn-nav-white {
   width: 40%;
   background-color: white;
-  border: 3px solid #0098E4;
-  border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
 }
@@ -399,7 +396,6 @@ canvas {
   padding: 0;
   width: 20%;
   color: white;
-  border-radius: 10px;
   text-align: center;
   padding: 10px 15px;
   margin-bottom: 100px;
