@@ -26,13 +26,13 @@
 
             <div class="input_box">
                 <span>Email:</span>
-                <input type="email" placeholder="  Digite seu email" id="ipt_email">
+                <input type="email" placeholder="  Digite seu email" id="email_input">
                 <i class="bx bxs-user"></i>
             </div>
 
             <div class="input_box">
                 <span>Senha:</span>
-                <input type="password" placeholder="  Insira sua senha" id="ipt_senha">
+                <input type="password" placeholder="  Insira sua senha" id="senha_input">
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
@@ -48,7 +48,7 @@
 </html>
 
 <script>
-       
+       /*
     function autenticacao() {
         var email = ipt_email.value;
         var senha = ipt_senha.value; 
@@ -59,6 +59,72 @@
         } else {
             alert("Falha na autenticação");
         }
+        */
+    function autenticacao() {
 
+        var email = email_input.value;
+        var senha = senha_input.value;
+
+        if (email == "" || senha == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "painel.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
 </script>
