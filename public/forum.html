@@ -145,6 +145,53 @@
 
     }
 
+    function responder() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var textoResposta = document.getElementById("textoResposta_" + idPostagem).value;
+
+    var corpo = {
+        assunto: "Resposta",
+        descricao: textoResposta,
+        fkPostagemPai: idPostagem
+    };
+
+    fetch(`/avisos/publicar/${idUsuario}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(corpo)
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            window.alert("Resposta enviada!");
+            window.location = "forum.html";
+        } else {
+            window.alert("Erro ao responder.");
+        }
+    });
+
+    }
+
+    function abrirResposta(idPostagem) {
+        var existente = document.getElementById("formResposta_" + idPostagem);
+        
+    if (existente) {
+            existente.remove();
+            return;
+        }
+
+        var container = document.createElement("div");
+        container.id = "formResposta_" + idPostagem;
+        container.className = "form-resposta";
+
+    container.innerHTML = `
+        <textarea id="textoResposta_${idPostagem}" rows="3" placeholder="Digite sua resposta..."></textarea>
+        <button onclick="responder(${idPostagem})">Enviar resposta</button>
+    `;
+
+    document.getElementById("post_" + idPostagem).appendChild(container);
+    }
+
     function deletar(idPostagem) {
         console.log("Criar função de apagar post escolhido - ID" + idPostagem);
         fetch(`/avisos/deletar/${idPostagem}`, {
@@ -195,6 +242,8 @@
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
+                        var btnResponder = document.createElement("button");
+                        var divRespostas = document.createElement("div");
 
 
                         spanID.innerHTML = "ID: <b>" + publicacao.idPostagem + "</b>";
@@ -203,12 +252,15 @@
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
+                        btnResponder.innerHTML = "Responder";
 
                         divPublicacao.className = "publicacao";
                         spanAssunto.id = "inputNumero" + publicacao.idPostagem;
                         spanNome.className = "publicacao-nome";
                         spanAssunto.className = "publicacao-assunto";
                         divDescricao.className = "publicacao-descricao";
+                        btnResponder.className = "publicacao-btn-editar";
+                        divRespostas.className = "respostas";
 
                         divButtons.className = "div-buttons"
 
@@ -220,17 +272,25 @@
                         btnDeletar.id = "btnDeletar" + publicacao.idPostagem;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPostagem})`);
 
+                        divRespostas.id = "respostas_" + publicacao.idPostagem;
+
+                        divPublicacao.id = "post_" + publicacao.idPostagem;
+
+                        btnResponder.setAttribute("onclick", `abrirResposta(${publicacao.idPostagem})`);
+
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanAssunto);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
                         feed.appendChild(divPublicacao);
+                        divPublicacao.appendChild(divRespostas);
                         
                         if (publicacao.fkUsuario == sessionStorage.ID_USUARIO) {
                         divButtons.appendChild(btnEditar);
                         divButtons.appendChild(btnDeletar)
-
+                        } else {
+                            divButtons.appendChild(btnResponder);
                         }
 
                     }
