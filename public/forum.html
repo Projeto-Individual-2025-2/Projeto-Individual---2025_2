@@ -145,7 +145,7 @@
 
     }
 
-    function deletar(idAviso) {
+    function deletar(idPostagem) {
         console.log("Criar função de apagar post escolhido - ID" + idPostagem);
         fetch(`/avisos/deletar/${idPostagem}`, {
             method: "DELETE",
@@ -225,9 +225,14 @@
                         divPublicacao.appendChild(spanAssunto);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
                         feed.appendChild(divPublicacao);
+                        
+                        if (publicacao.fkUsuario == sessionStorage.ID_USUARIO) {
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar)
+
+                        }
+
                     }
 
                     finalizarAguardar();

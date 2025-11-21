@@ -10,7 +10,7 @@ dtNasc date not null,
 email varchar(45) not null unique,
 tipoEscola enum('publica', 'privada') not null,
 conhecimento enum('Sim', 'Nao') not null,
-detalhamento varchar(45) ,
+detalhamento varchar(45) null,
 senha varchar(45) not null
 );
 
@@ -21,16 +21,11 @@ comentario varchar(250),
 fkUsuario int,
 constraint fkUsuarioPostagem
 	foreign key (fkUsuario)
-    	references Usuario(idUsuario)
-);
-
-create table Resposta(
-idResposta int primary key auto_increment,
-descricao varchar(250),
-fkPostagem int,
-constraint fkPostagemResposta
-	foreign key (fkPostagem)
-		references Postagem(idPostagem)
+    	references Usuario(idUsuario),
+fkPostagemPai int null,
+	constraint fkPostagemPai
+		foreign key (fkPostagemPai)
+			references Postagem(idPostagem)
 );
 
 select * from Usuario;
