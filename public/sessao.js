@@ -8,16 +8,17 @@
         if (email != null && nome != null) {
             b_usuario.innerHTML = nome;
         } else {
-            window.location = "../login.html";
+            window.location = "login.html";
         }
     }
 
     function limparSessao() {
         sessionStorage.clear();
-        window.location = "../login.html";
+        window.location = "login.html";
     }
 
     // carregamento (loading)
+
     function aguardar() {
         var divAguardar = document.getElementById("div_aguardar");
         divAguardar.style.display = "flex";
@@ -32,5 +33,5 @@
             divErrosLogin.style.display = "flex";
             divErrosLogin.innerHTML = texto;
         }
-    }
+    } 
 

@@ -71,7 +71,7 @@ body {
   font-size: 14px;
   padding: 5px 8px;
   color: white;
-  background-color: #0098E4;
+  background-color: #0B3C5D;
   width: 80px;
 }
 
@@ -84,6 +84,7 @@ body {
   align-items: stretch;
   border-bottom: 3px solid #0098E4;
   padding: 20px;
+  color: #0B3C5D;
 }
 
 .publicacao>*:not(:last-child) {

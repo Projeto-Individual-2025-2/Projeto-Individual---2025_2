@@ -61,18 +61,18 @@ function pesquisarDescricao(req, res) {
 }
 
 function publicar(req, res) {
-    var titulo = req.body.titulo;
+    var assunto = req.body.assunto;
     var descricao = req.body.descricao;
     var idUsuario = req.params.idUsuario;
 
-    if (titulo == undefined) {
+    if (assunto == undefined) {
         res.status(400).send("O título está indefinido!");
     } else if (descricao == undefined) {
         res.status(400).send("A descrição está indefinido!");
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        avisoModel.publicar(assunto, descricao, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -90,9 +90,9 @@ function publicar(req, res) {
 
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    var idPostagem= req.params.idPostagem;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    avisoModel.editar(novaDescricao, idPostagem)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -109,9 +109,9 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idAviso;
+    var idPostagem = req.params.idPostagem;
 
-    avisoModel.deletar(idAviso)
+    avisoModel.deletar(idPostagem)
         .then(
             function (resultado) {
                 res.json(resultado);

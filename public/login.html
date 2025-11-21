@@ -37,7 +37,7 @@
             </div>
 
             <div class="botao">
-            <button type="submit" class="login" onclick="autenticacao()">Entrar</button>
+            <button type="submit" class="login" onclick="entrar()">Entrar</button>
             </div>
 
             <div class="registre">
@@ -60,7 +60,7 @@
             alert("Falha na autenticação");
         }
         */
-    function autenticacao() {
+    function entrar() {
 
         var email = email_input.value;
         var senha = senha_input.value;
@@ -98,10 +98,10 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
 
                     setTimeout(function () {
-                        window.location = "painel.html";
+                        window.location = "forum.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

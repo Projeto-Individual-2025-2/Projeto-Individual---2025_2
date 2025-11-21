@@ -21,7 +21,7 @@ comentario varchar(250),
 fkUsuario int,
 constraint fkUsuarioPostagem
 	foreign key (fkUsuario)
-    references Usuario(idUsuario)
+    	references Usuario(idUsuario)
 );
 
 create table Resposta(
@@ -30,5 +30,7 @@ descricao varchar(250),
 fkPostagem int,
 constraint fkPostagemResposta
 	foreign key (fkPostagem)
-	references Postagem(idPostagem)
+		references Postagem(idPostagem)
 );
+
+select * from Usuario;
