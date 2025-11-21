@@ -6,7 +6,7 @@ function listar() {
         SELECT 
             a.idPostagem AS idPostagem,
             a.assunto,
-            a.comentario,
+            a.comentario AS descricao,
             a.fkUsuario,
             u.idUsuario AS idUsuario,
             u.nome,
@@ -26,7 +26,7 @@ function pesquisarDescricao(texto) {
         SELECT 
             a.idPostagem AS idPostagem,
             a.assunto,
-            a.comentario,
+            a.comentario AS descricao,
             a.fkUsuario,
             u.idUsuario AS idUsuario,
             u.nome,
@@ -47,7 +47,7 @@ function listarPorUsuario(idUsuario) {
         SELECT 
             a.idPostagem AS idPostagem,
             a.assunto,
-            a.comentario,
+            a.comentario AS descricao,
             a.fkUsuario,
             u.idUsuario AS idUsuario,
             u.nome,
