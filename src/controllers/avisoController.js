@@ -126,34 +126,6 @@ function deletar(req, res) {
         );
 }
 
-function responder(req, res) {
-    var idUsuario = req.body.idUsuarioServer;
-    var descricao = req.body.descricaoServer;
-    var fkPostagem = req.body.fkPostagemServer;
-
-    console.log(idUsuario);
-    console.log(descricao);
-    console.log(fkPostagem);
-
-    if (descricao == undefined) {
-        res.status(400).send("A descrição está indefinida!");
-    } else if (idUsuario == undefined) {
-        res.status(403).send("O id do usuário está indefinido!");
-    } else if (fkPostagem == undefined) {
-        res.status(400).send("O id da postagem pai está indefinido!");
-    } else {
-        avisoModel.publicarResposta(descricao, idUsuario, fkPostagem)
-            .then(function (resultado) {
-                res.json(resultado);
-            })
-            .catch(function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a resposta: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
-    }
-}
-
 module.exports = {
     listar,
     listarPorUsuario,
@@ -161,5 +133,4 @@ module.exports = {
     publicar,
     editar,
     deletar,
-    responder,
 }
