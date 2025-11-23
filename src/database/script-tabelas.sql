@@ -17,20 +17,22 @@ senha varchar(45) not null
 create table Postagem(
 idPostagem int primary key auto_increment,
 assunto varchar(45),
-comentario varchar(250),
+conteudo varchar(250),
 fkUsuario int,
-constraint fkUsuarioResposta
+constraint fkUsuarioPostagem
 	foreign key (fkUsuario)
 		references Usuario(idUsuario)
 );
 
 create table Resposta(
 idResposta int primary key auto_increment,
-descricao varchar(250),
+conteudo varchar(250),
 fkPostagem int, 
 constraint fkPostagemResposta
 	foreign key (fkPostagem)
-		references Postagem(idPostagem)
+		references Postagem(idPostagem),
+fkUsuario int,
+constraint fkUsuarioResposta
+	foreign key (fkUsuario)
+		references Usuario(idUsuario)
 );
-
-select * from Usuario;
