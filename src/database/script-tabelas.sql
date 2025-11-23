@@ -18,19 +18,19 @@ create table Postagem(
 idPostagem int primary key auto_increment,
 assunto varchar(45),
 comentario varchar(250),
+fkUsuario int,
+constraint fkUsuarioResposta
+	foreign key (fkUsuario)
+		references Usuario(idUsuario)
 );
 
 create table Resposta(
 idResposta int primary key auto_increment,
 descricao varchar(250),
-fkPostagem int,
-fkUsuario int, 
+fkPostagem int, 
 constraint fkPostagemResposta
 	foreign key (fkPostagem)
-		references Postagem(idPostagem),
-constraint fkUsuarioResposta
-	foreign key (fkUsuario)
-		references Usuario(idUsuario)
+		references Postagem(idPostagem)
 );
 
 select * from Usuario;
