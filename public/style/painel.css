@@ -8,11 +8,6 @@ body {
   font-family:Arial, Helvetica, sans-serif;
 }
 
-.label-captura {
-  display: flex;
-  justify-content: center;
-}
-
 .dash-right .avisos {
   width: 100%;
   color: white;
@@ -53,7 +48,6 @@ body {
   cursor: pointer;
   font-family:Arial, Helvetica, sans-serif;
   border: 0;
-  border-radius: 5px;
   font-weight: 600;
   font-size: 18px;
   padding: 10px 15px;
@@ -66,7 +60,6 @@ body {
   cursor: pointer;
   font-family:Arial, Helvetica, sans-serif;
   border: 0;
-  border-radius: 5px;
   font-weight: 600;
   font-size: 14px;
   padding: 5px 8px;
@@ -97,7 +90,6 @@ body {
 
 .div-results .feed-container {
   background-color: #ffff;
-  border-radius: 5px;
   margin-bottom: 80px;
 }
 
@@ -111,207 +103,81 @@ body {
 }
 
 /* pagina graficos */
-
-.dash-header {
-  background-color: #ffff;
-}
-
 .dash {
-  width: 80%;
-  position: relative;
-  top: 0;
-  left: 20%;
-  background-color: #ffff;
-  height: 100vh;
-  overflow: auto;
-}
-
-.area-parametros-alerta {
-  /* border: 2px solid pink; */
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin: auto;
-  margin-top: 10px;
-  background-color: #0B3C5D;
-}
-
-.area-parametros-alerta .titulo-legenda {
-  color: white;
-  font-weight: 600;
-  width: fit-content;
-  margin: 10px 20px;
-}
-
-.parametros-alerta {
-  display: flex;
-  width: 100%;
-}
-
-.item-regua {
-  width: 20%;
-  text-align: center;
-  height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
-}
-
-.item-regua p {
-  margin: 0;
-  font-weight: 500;
-}
-
-.item-regua p:nth-child(2) {
-  font-weight: 800;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 450px;
-  width: 100%;
-  align-items: center;
-  color: white;
-}
-
-.card-aquario {
-  margin: 2%;
-  min-width: 40%;
-  max-width: 50%;
-  width: fit-content;
-  flex-wrap: wrap;
-  display: flex;
-  /* text-align: center; */
-  height: 180px;
-  /* justify-content: right; */
-  background-color: #212124;
-  font-size: 20px;
-}
-
-.card-aquario h1 {
-  width: fit-content;
-}
-
-.card-aquario p {
-  margin: 0;
-  font-size: 50px;
-  font-weight: lighter;
-  text-align: left;
-}
-
-.desc-aquario {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
-
-.desc-aquario .cor-alerta {
-  width: 30px;
-}
-
-.title-aquario {
-  width: 100%;
-}
-
-
-.cards h1 {
-  font-size: 22px;
-  border-bottom: solid white 1px;
-  text-align: left;
-  font-weight: lighter;
-  margin: 20px;
-}
-
-.temperatura,
-.umidade {
-  margin: 5px;
-  margin-left: 20px;
-  width: 75%;
-}
-
-.cor-alerta {
-  width: 13%;
-  height: 30%;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.btns-dash {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-  flex-wrap: wrap;
-  padding: 0 30% 0 30%;
-}
-
-.graph {
+  justify-content: space-between;
+  align-items: flex-start;
   width: 70%;
-  margin: auto;
-  padding-top: 10px;
+  height: auto;
+  background-color: #ffff;
+  padding-left: 380px;
+  gap: 50px
 }
 
-.tituloGraficos {
-  color: rgb(216, 216, 216);
+.dash h2{
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.btn-chart {
-  font-family:Arial, Helvetica, sans-serif;
-  border: 0;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: #e6005a;
-  background-color: white;
-  margin: 5px;
-  border-radius: 3px;
-  cursor: pointer
-}
-
-.btn-pink {
-  color: white;
-  background-color: #e6005a;
-}
-
-.btn-white {
-  color: #e6005a;
-  background-color: white;
-
-}
-
-.label-captura {
-  height: 80px;
-}
-
-.display-none {
-  display: none;
-}
-
-.display-flex {
+.graficos{
   display: flex;
+  flex-direction: column;
+  gap: 30px
 }
 
-.display-block {
-  display: block;
-}
-
-canvas {
+.graficos canvas{
   width: 100% !important;
-  height: 100% !important;
+  background: #ffff;
+}
+
+.graficos-redondos{
+  display: flex;
+  flex-direction: row;
+}
+
+#idadeChart{
+  height: 250px !important;
+}
+
+#escolaChart{
+  height: 250px !important;
+  width: 250px !important;
+}
+
+#instituicaoChart{
+    height: 250px !important;
+    width: 250px !important;
+}
+
+.kpi{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  gap: 50px
+}
+
+.kpi .card-1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #0B3C5D;
+  color: #ffff;
+}
+
+.kpi .card-2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #0098E4;
+  color: #ffff;
 }
 
 /* PAGINA DOS GRÁFICOS 2023 */
-
-.janela {
-  display: flex;
-  /* width: 100vw; */
-}
 
 .header-left a {
   text-decoration: none;
@@ -354,9 +220,10 @@ canvas {
 }
 
 .hello {
-  width: 100%;
+  width: 70%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .hello h3 {

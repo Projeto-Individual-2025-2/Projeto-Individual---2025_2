@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConectUs | Painel</title>
+    <title>ConectUs | Dashboard </title>
 
     
     <link rel="stylesheet" href="style/painel.css">
     <link rel="stylesheet" href="style/estilo.css" />
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
+    <script src="sessao.js"></script>
+    <script src="alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -29,8 +29,6 @@
 <!-- <body onload=" atualizarFeed()"> -->
 
 <body>
-
-    <div class="janela">
         <div class="header-left">
             <h1>ConectUs</h1>
 
@@ -57,19 +55,111 @@
 
         </div>
 
-        <div class="dash">
-            <div id="alerta">
+        <div class="dash">  
+            <div class="graficos">
+                <h2>Perfil da Comunidade</h2>
+
+                <div class="graficos-redondos">
+                    <div>
+                        <canvas id="escolaChart"></canvas>
+                    </div>
+
+                    <div>
+                        <canvas id="instituicaoChart"></canvas>
+                    </div>
+                </div>
+
+                <div>
+                    <canvas id="idadeChart"></canvas>
+                </div>
+
             </div>
 
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+            <div class="kpi">
+                <h2>Seu Perfil</h2>
+                <div class="card-1">
+                    <h3>Total de comentários</h3>
+                    <p id="totalComentarios">120</p>
+                </div>
+
+                <div class="card-2">
+                    <h3>Comentário mais respondido</h3>
+                    <p id="comentarioTop">"Minha experiência...(30 respostas)"</p>
+                </div>
+
             </div>
-            <div id="graficos">
-            </div>
+
         </div>
-    </div>
-
-
 </body>
-
 </html>
+<script>
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    var idade = [18, 15, 12];
+
+    var escola = [20, 30];
+
+    var instituicao = [20, 30, 10];
+
+    new Chart(document.getElementById('idadeChart'), {
+        type: 'bar',
+        data: {
+            labels: ['12-16', '17-21', '21+'],
+            datasets: [{
+                labels: 'Usuários por faixa etária',
+                data: idade,
+                backgroundColor: ['#0B3C5D', '#36A2EB', '#43c0ffd3']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {legend: {display: false},
+            title: {
+                display: true,
+                text: 'Faixa Etária dos Usuários '
+            }}
+        }
+    });
+
+            new Chart(document.getElementById('escolaChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Pública', 'Privada'],
+                datasets: [{
+                    data: escola,
+                    backgroundColor: ['#0B3C5D', '#36A2EB']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Tipo de Escola dos Usuários'
+                    }
+                }
+            }   
+        });
+
+                    new Chart(document.getElementById('instituicaoChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Ismart', 'Colégio', 'Cuja'],
+                datasets: [{
+                    data: instituicao,
+                    backgroundColor: ['#0B3C5D', '#36A2EB', '#43c0ffd3']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Instituições mais conhecidas'
+                    }
+                }
+            }   
+        });
+
+</script>    
