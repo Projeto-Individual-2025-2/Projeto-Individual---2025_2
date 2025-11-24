@@ -28,7 +28,7 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 
-<body>
+<body onload="carregarDashboard()">
         <div class="header-left">
             <h1>ConectUs</h1>
 
@@ -79,7 +79,7 @@
                 <h2>Seu Perfil</h2>
                 <div class="card-1">
                     <h3>Total de comentários</h3>
-                    <p id="totalComentarios">120</p>
+                    <div id="kpiComentarios">0</div>
                 </div>
 
                 <div class="card-2">
@@ -96,19 +96,32 @@
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    var idade = [18, 15, 12];
+    function carregarDashboard() {
+        carregarFaixaEtaria();
+        carregarTipoEscola();
+        carregarDetalhamento();
+        carregarKpiComentarios();
 
-    var escola = [20, 30];
+    }
 
-    var instituicao = [20, 30, 10];
+    function carregarFaixaEtaria() {
+        fetch("/avisos/faixa-etaria")
+        .then(r => r.json())
+        .then(d=>{
 
-    new Chart(document.getElementById('idadeChart'), {
+        var valores = [
+        d.faixa_12_16,
+        d.faixa_17_21,
+        d.faixa_21_mais
+        ];
+
+        new Chart(document.getElementById('idadeChart'), {
         type: 'bar',
         data: {
             labels: ['12-16', '17-21', '21+'],
             datasets: [{
-                labels: 'Usuários por faixa etária',
-                data: idade,
+                label: 'Usuários por faixa etária',
+                data: valores,
                 backgroundColor: ['#0B3C5D', '#36A2EB', '#43c0ffd3']
             }]
         },
@@ -119,15 +132,28 @@
                 display: true,
                 text: 'Faixa Etária dos Usuários '
             }}
-        }
+            }
+        });
     });
+}
+
+    function carregarTipoEscola() {
+        fetch("/avisos/tipo-escola")
+        .then(r => r.json())
+        .then(d=>{
+
+            var valores = [
+                d.publica,
+                d.privada
+            ];
 
             new Chart(document.getElementById('escolaChart'), {
             type: 'pie',
             data: {
                 labels: ['Pública', 'Privada'],
                 datasets: [{
-                    data: escola,
+                    label: 'Tipo Escola',
+                    data: valores,
                     backgroundColor: ['#0B3C5D', '#36A2EB']
                 }]
             },
@@ -140,14 +166,29 @@
                     }
                 }
             }   
-        });
+        });    
+    });
+}
 
-                    new Chart(document.getElementById('instituicaoChart'), {
+    function carregarDetalhamento() {
+        fetch("/avisos/detalhamento")
+        .then(r => r.json())
+        .then(d=>{
+
+        
+        var valores = [
+                d.ismart,
+                d.colegio,
+                d.cuja
+            ]
+            
+            new Chart(document.getElementById('instituicaoChart'), {
             type: 'doughnut',
             data: {
                 labels: ['Ismart', 'Colégio', 'Cuja'],
                 datasets: [{
-                    data: instituicao,
+                    label: 'Instituições',
+                    data: valores,
                     backgroundColor: ['#0B3C5D', '#36A2EB', '#43c0ffd3']
                 }]
             },
@@ -161,5 +202,16 @@
                 }
             }   
         });
+    });
+}
 
+    function carregarKpiComentarios() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/avisos/total-posts/${idUsuario}`)
+        .then(r => r.json())
+        .then(d=>{
+            document.getElementById("kpiComentarios").innerHTML = d.total;
+        });
+    }
 </script>    

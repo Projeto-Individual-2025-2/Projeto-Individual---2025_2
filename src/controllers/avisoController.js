@@ -126,6 +126,65 @@ function deletar(req, res) {
         );
 }
 
+    function faixaEtaria(req, res) {
+        avisoModel.faixaEtaria()
+        .then(function (resultado){
+            res.status(200).json({
+                faixa_12_16: resultado[0].faixa_12_16,
+                faixa_17_21: resultado[0].faixa_17_21,
+                faixa_21_mais: resultado[0].faixa_21_mais
+            });
+        }) 
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
+    function tipoEscola(req, res) {
+        avisoModel.tipoEscola()
+        .then(function (resultado){
+            res.status(200).json({
+                privada: resultado[0].privada,
+                publica: resultado[0].publica
+            });
+        }) 
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
+    function detalhamento(req, res) {
+        avisoModel.detalhamento()
+        .then(function (resultado){
+            res.status(200).json({
+                colegio: resultado[0].colegio,
+                ismart: resultado[0].ismart,
+                cuja: resultado[0].cuja
+            });
+        }) 
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
+    function totalPosts(req, res) {
+        var idUsuario = req.params.idUsuario;
+
+        avisoModel.totalPosts(idUsuario)
+        .then(function (resultado){
+            res.status(200).json({
+                total: resultado[0].total
+            });
+        }) 
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
@@ -133,4 +192,8 @@ module.exports = {
     publicar,
     editar,
     deletar,
+    faixaEtaria,
+    tipoEscola,
+    detalhamento,
+    totalPosts
 }

@@ -27,4 +27,20 @@ router.delete("/deletar/:idPostagem", function (req, res) {
     avisoController.deletar(req, res);
 });
 
+router.get("/faixa-etaria", function (req, res){
+    avisoController.faixaEtaria(req, res);
+});
+
+router.get("/tipo-escola", function (req, res){
+    avisoController.tipoEscola(req, res);
+});
+
+router.get("/detalhamento", function (req, res){
+    avisoController.detalhamento(req, res);
+});
+
+router.get("/total-posts/:idUsuario", function (req, res){
+    avisoController.totalPosts(req, res);
+});
+
 module.exports = router;
