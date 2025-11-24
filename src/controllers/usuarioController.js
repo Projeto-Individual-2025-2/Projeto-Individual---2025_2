@@ -50,6 +50,7 @@ function cadastrar(req, res) {
     var conhecimento = req.body.conhecimentoServer;
     var detalhamento = req.body.detalhamentoServer;
     var senha = req.body.senhaServer;
+    var fkInstituicao = req.body.fkInstituicaoServer;
 
 
     if (conhecimento == "Nao" || conhecimento == 'selecione') {
@@ -71,12 +72,14 @@ function cadastrar(req, res) {
         res.status(400).send("Escolha uma instituição!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+    } else if (fkInstituicao == undefined) {
+        res.status(400).send("Sua senha está undefined!"); 
     } else {
 
     
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, dtNasc, email, tipoEscola, conhecimento, detalhamento, senha)
+        usuarioModel.cadastrar(nome, dtNasc, email, tipoEscola, conhecimento, detalhamento, senha, fkInstituicao)
             .then(
                 function (resultado) {
                     res.json(resultado);

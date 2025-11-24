@@ -112,6 +112,16 @@
     detalhamento = null;
     }
 
+    var fkInstituicao = 0;
+    
+    if(detalhamento == 'Ismart'){
+        fkInstituicao = 1;
+    } else if (detalhamento == 'Colegio'){
+        fkInstituicao = 2;
+    } else {
+        fkInstituicao = 3;
+    }
+
     if (!senhaValida) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "A senha não atende aos requisitos mínimos.";
@@ -154,7 +164,8 @@
         tipoEscolaServer: tipoEscola,
         conhecimentoServer: conhecimento,
         detalhamentoServer: detalhamento,
-        senhaServer: senha
+        senhaServer: senha,
+        fkInstituicaoServer: fkInstituicao
       }),
     })
       .then(function (resposta) {
