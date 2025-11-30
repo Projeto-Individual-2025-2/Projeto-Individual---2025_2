@@ -25,7 +25,6 @@ body {
     justify-content: start;
     align-items: start;
     width: 90%;
-    height: 50px;
 }
 .voltar a{
     color: #ffff;
@@ -47,38 +46,37 @@ body {
     height: 633px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     background-color: #0B3C5D;
-    opacity: 93%;
-    
+    opacity: 93%;   
 }
 
 .input-group {
-    /* background-color: red; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px;
-    width: 700px;
     height: 375px;
     color: #ffff;
 }
 
-.input-box {
+.input-box{
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-top: 20px;
     width: 39%;
 }
 
 .esquerda {
     margin-right: 50px;
+    display: flex;
+    justify-content: end;
 }
 
 .direita {
     margin-left: 50px;
+    display: flex;
+    justify-content: end;
 }
 
 .input-box input {
-    margin: 5px;
     padding: 8px;
     border: none;
     background-color: #fff;
@@ -89,7 +87,7 @@ body {
 }
 
 .validarSenha {
-    width: 300px;
+    width: 400px;
 }
 /*Final container*/
 
@@ -103,7 +101,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 .button button{
@@ -111,13 +109,11 @@ button:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 9px;
     color: #0B3C5D;
     background-color: #ffff ;
     font-weight: bold;
     border: none;
-    margin-bottom: 20px;
-    width: 145px;
+    width: 50%;
     height: 45px;
 }
 
@@ -129,5 +125,20 @@ button:hover {
 
 .button p{
     color: #ffff;
+    margin-top: 10px;
 }
 /*Final botão*/
+
+#mensagem_erro{
+    color: #ffff;
+}
+
+select{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    height: 35px;
+    border: none;
+    width: 100%;
+}

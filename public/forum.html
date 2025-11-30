@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="./style/estilo.css"/>
     <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
     <script src="./sessao.js"></script>
-    <script src="./alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -106,9 +105,17 @@ var teste = "";
 
     function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
+        var assunto = form_postagem.assunto.value.trim();
+        var descricao = form_postagem.descricao.value.trim();
+
+        if (!descricao || !assunto) {
+            window.alert("Por favor, preencha os campos");
+            return false;
+        }
+
         var corpo = {
-            assunto: form_postagem.assunto.value,
-            descricao: form_postagem.descricao.value
+            assunto: assunto,
+            descricao: descricao
         }
 
         fetch(`/avisos/publicar/${idUsuario}`, {
@@ -197,7 +204,12 @@ var teste = "";
     function publicarResposta(idPostagemPai) {
 
         var idUsuario = sessionStorage.ID_USUARIO;
-        var texto = document.getElementById("textareaResposta_" + idPostagemPai).value;
+        var texto = document.getElementById("textareaResposta_" + idPostagemPai).value.trim();
+
+        if (!texto) {
+            window.alert('Por favor, preencha os campos!');
+            return;
+        }
 
         var corpo = {
             assunto: "Resposta",
