@@ -88,6 +88,35 @@ function publicar(req, res) {
     }
 }
 
+function publicarResposta(req, res) {
+    var assunto = req.body.assunto;
+    var descricao = req.body.descricao;
+    var idUsuario = req.params.idUsuario;
+    var fkPostagemPai = req.body.fkPostagemPai;
+
+    if (assunto == undefined) {
+        res.status(400).send("O título está indefinido!");
+    } else if (descricao == undefined) {
+        res.status(400).send("A descrição está indefinido!");
+    } else if (idUsuario == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    } else {
+        avisoModel.publicarResposta(assunto, descricao, idUsuario, fkPostagemPai)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
     var idPostagem= req.params.idPostagem;
@@ -110,8 +139,9 @@ function editar(req, res) {
 
 function deletar(req, res) {
     var idPostagem = req.params.idPostagem;
+    var idUsuario = req.params.idUsuario;
 
-    avisoModel.deletar(idPostagem)
+    avisoModel.deletar(idPostagem, idUsuario)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -190,6 +220,7 @@ module.exports = {
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
+    publicarResposta,
     editar,
     deletar,
     faixaEtaria,

@@ -19,11 +19,15 @@ router.post("/publicar/:idUsuario", function (req, res) {
     avisoController.publicar(req, res);
 });
 
+router.post("/publicarResposta/:idUsuario", function (req, res) {
+    avisoController.publicarResposta(req, res);
+});
+
 router.put("/editar/:idPostagem", function (req, res) {
     avisoController.editar(req, res);
 });
 
-router.delete("/deletar/:idPostagem", function (req, res) {
+router.delete("/deletar/:idPostagem/:idUsuario", function (req, res) {
     avisoController.deletar(req, res);
 });
 

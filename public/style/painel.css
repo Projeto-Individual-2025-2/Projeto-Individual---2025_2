@@ -1,6 +1,9 @@
 /* pagina mural */
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -34,7 +37,7 @@ body {
 
 .dash-right .avisos .div-form input {
   width: 95%;
-  border-radius: 5px;
+    border-radius: 5px;
 }
 
 .dash-right .avisos .div-form textarea {
@@ -56,7 +59,7 @@ body {
   width: 120px;
 }
 
-.publicacao-btn-editar {
+.publicacao-btn-responder {
   cursor: pointer;
   font-family:Arial, Helvetica, sans-serif;
   border: 0;
@@ -78,6 +81,18 @@ body {
   border-bottom: 3px solid #0098E4;
   padding: 20px;
   color: #0B3C5D;
+}
+
+.publicacao-btn-editar {
+  cursor: pointer;
+  font-family:Arial, Helvetica, sans-serif;
+  border: 0;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 5px 8px;
+  color: white;
+  background-color: #0B3C5D;
+  width: 90px;
 }
 
 .publicacao>*:not(:last-child) {
@@ -108,7 +123,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  width: 70%;
+  width: 100%;
   height: auto;
   background-color: #ffff;
   padding-left: 380px;
@@ -155,8 +170,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 40%;
-  gap: 50px
+  width: 50%;
+  gap: 50px;
 }
 
 .kpi .card-1{
@@ -272,4 +287,27 @@ body {
   padding: 10px 15px;
   margin-bottom: 100px;
   cursor: pointer;
+}
+
+.Comentario {
+  display: flex;
+  align-items: start;
+  background-color: #ffff;
+  color: #0B3C5D;
+  margin: 8px 0 8px 30px; 
+  width: 650px;
+  height: 100px;
+  flex-direction: column;
+  justify-content: center;
+  width: 95%;
+  border: 3px solid #0098E4;
+}
+
+.Comentario-nome{
+  padding: 20px;
+}
+
+.Comentario-descricao{
+  padding: 20px;
+  margin-top: -30px;
 }

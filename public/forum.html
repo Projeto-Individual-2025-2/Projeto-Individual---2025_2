@@ -79,6 +79,7 @@
                     <h1>Fórum ConectUs</h1>
                     <div class="div-results">
                         <div id="feed_container" class="feed-container">
+                            <div id="respostas"></div>
                         </div>
                     </div>
                 </div>
@@ -105,7 +106,6 @@ var teste = "";
 
     function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
-
         var corpo = {
             assunto: form_postagem.assunto.value,
             descricao: form_postagem.descricao.value
@@ -140,9 +140,9 @@ var teste = "";
 
     }
 
-    function deletar(idPostagem) {
+    function deletar(idPostagem, idUsuario) {
         console.log("Criar função de apagar post escolhido - ID" + idPostagem);
-        fetch(`/avisos/deletar/${idPostagem}`, {
+        fetch(`/avisos/deletar/${idPostagem}/${idUsuario}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -161,6 +161,63 @@ var teste = "";
             console.log(`#ERRO: ${resposta}`);
         });
     }
+      
+    function editar(idPostagem) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idPostagem;
+        console.log("cliquei em editar - " + idPostagem);
+        window.alert("Você será redirecionado à página de edição da postagem de id número: " + idPostagem);
+        window.location = "edicao-aviso.html"
+    }
+
+    function responder(idPostagem) {
+        var respostaDiv = document.getElementById("post_" + idPostagem);
+
+        if (document.getElementById("textareaResposta_" + idPostagem)) {
+            return;
+        }
+
+        var textarea = document.createElement("textarea");
+        textarea.id = "textareaResposta_" + idPostagem;
+        textarea.maxLength = 250;
+        textarea.rows = 5;
+        textarea.placeholder = "Escreva sua resposta aqui..."
+
+        var btnEnviar = document.createElement("button");
+        btnEnviar.innerHTML = "Enviar Resposta";
+        btnEnviar.setAttribute("onclick", `publicarResposta(${idPostagem})`);
+
+        var div = document.createElement("div");
+        div.className = "div-resposta";
+        div.appendChild(textarea);
+        div.appendChild(btnEnviar);
+
+        respostaDiv.appendChild(div);
+    }
+
+    function publicarResposta(idPostagemPai) {
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var texto = document.getElementById("textareaResposta_" + idPostagemPai).value;
+
+        var corpo = {
+            assunto: "Resposta",
+            descricao: texto,
+            fkPostagemPai: idPostagemPai
+        };
+
+        fetch(`/avisos/publicarResposta/${idUsuario}`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(corpo)
+        }).then(function(resposta){
+
+            if (resposta.ok){
+                window.location = "forum.html";
+            } else {
+                console.log("Erro ao publicar resposta");
+            }
+        });
+    }
 
     function atualizarFeed() {
         fetch("/avisos/listar").then(function (resposta) {
@@ -168,18 +225,41 @@ var teste = "";
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
                     var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    mensagem.innerHTML = ""
                     feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!!";
                 }
-
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                     var feed = document.getElementById("feed_container");
                     feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
+
+                    var postagem = []; // Apenas postagens com seus comentarios em um vetor
+
+                    for (var i = 0; i < resposta.length; i++) {
+
+                        if (resposta[i].fkPostagemPai == null) { //Postagem 
+                            postagem.push({
+                                post: resposta[i],
+                                comentarios: []
+                            }
+                            );
+                        } else { //Comentario
+                            
+                            for (var j = 0; j < postagem.length; j++) {
+
+                                if (resposta[i].fkPostagemPai == postagem[j].post.idPostagem) {
+                                    postagem[j].comentarios.push(resposta[i]);
+                                } 
+                            }
+                        }
+                    }                   
+                    
+                    for (var m = 0; m < postagem.length; m++) {
+                        var p = postagem[m].post;
+                        
+                        var comentarios = postagem[m].comentarios;
 
                         // criando e manipulando elementos do HTML via JavaScript
                         var divPublicacao = document.createElement("div");
@@ -190,16 +270,18 @@ var teste = "";
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
+                        var btnResponder = document.createElement("button");
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idPostagem + "</b>";
-                        spanAssunto.innerHTML = "Assunto: <b>" + publicacao.assunto + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        spanID.innerHTML = "Post: <b>" + p.idPostagem + "</b>";
+                        spanAssunto.innerHTML = "Assunto: <b>" + p.assunto + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + p.nome + "</b>";
+                        divDescricao.innerHTML = "Descrição: <b>" + p.descricao + "</b>";
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
+                        btnResponder.innerHTML = "Responder";
 
                         divPublicacao.className = "publicacao";
-                        spanAssunto.id = "inputNumero" + publicacao.idPostagem;
+                        spanAssunto.id = "inputNumero" + p.idPostagem;
                         spanNome.className = "publicacao-nome";
                         spanAssunto.className = "publicacao-assunto";
                         divDescricao.className = "publicacao-descricao";
@@ -207,14 +289,18 @@ var teste = "";
                         divButtons.className = "div-buttons"
 
                         btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idPostagem;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idPostagem})`);
+                        btnEditar.id = "btnEditar" + p.idPostagem;
+                        btnEditar.setAttribute("onclick", `editar(${p.idPostagem})`);
 
                         btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idPostagem;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPostagem})`);
+                        btnDeletar.id = "btnDeletar" + p.idPostagem;
+                        btnDeletar.setAttribute("onclick", `deletar(${p.idPostagem})`);
 
-                        divPublicacao.id = "post_" + publicacao.idPostagem;
+                        btnResponder.className = "publicacao-btn-responder"
+                        btnResponder.id = "Responder" + p.idPostagem;
+                        btnResponder.setAttribute("onclick", `responder(${p.idPostagem})`);
+
+                        divPublicacao.id = "post_" + p.idPostagem;
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
@@ -223,21 +309,45 @@ var teste = "";
                         divPublicacao.appendChild(divButtons);
                         feed.appendChild(divPublicacao);
                         
-                        if (publicacao.fkUsuario == sessionStorage.ID_USUARIO) {
+                        if (p.fkUsuario == sessionStorage.ID_USUARIO) {
                         divButtons.appendChild(btnEditar);
                         divButtons.appendChild(btnDeletar)
+                        } else {
+                            divButtons.appendChild(btnResponder)
+                        }
+
+                        for (var n = 0; n < comentarios.length; n++) {
+                        var Comentario = comentarios[n];
+                        
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divComentario = document.createElement("div");
+                        var spanNome = document.createElement("span");
+                        var divDescricao = document.createElement("div");
+
+                        spanNome.innerHTML = "Autor: <b>" + Comentario.nome + "</b>";
+                        divDescricao.innerHTML = "Descrição: <b>" + Comentario.descricao + "</b>";
+
+                        divComentario.className = "Comentario";
+                        spanNome.className = "Comentario-nome";
+                        spanAssunto.className = "Comentario-assunto";
+                        divDescricao.className = "Comentario-descricao";
+
+                        divComentario.id = "post_" + Comentario.fkPostagemPai;
+
+                        divComentario.appendChild(spanNome);
+                        divComentario.appendChild(divDescricao);
+                        divPublicacao.appendChild(divComentario);
+
                         }
 
                     }
 
-                    finalizarAguardar();
                 });
             } else {
                 throw ('Houve um erro na API!');
             }
         }).catch(function (resposta) {
             console.error(resposta);
-            finalizarAguardar();
         });
     }
 
