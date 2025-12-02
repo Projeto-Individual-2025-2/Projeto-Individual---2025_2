@@ -146,7 +146,23 @@ function detalhamento() {
 function totalPosts(idUsuario) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function totalPosts():", idUsuario);
     var instrucaoSql = `
-    SELECT count(idPostagem) AS total FROM Postagem where fkUsuario = ${idUsuario};`;
+    SELECT count(idPostagem) AS total FROM Postagem where fkUsuario = ${idUsuario} and fkPostagemPai is null;`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function totalComentarios(idUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function totalPosts():", idUsuario);
+    var instrucaoSql = `
+    SELECT count(idPostagem) AS total FROM Postagem where fkUsuario = ${idUsuario} and fkPostagemPai is not null;`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function ultimosPosts(idUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function totalPosts():", idUsuario);
+    var instrucaoSql = `
+    SELECT assunto FROM Postagem WHERE fkUsuario = ${idUsuario} AND fkPostagemPai IS NULL ORDER BY idPostagem DESC LIMIT 2;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -162,5 +178,7 @@ module.exports = {
     faixaEtaria,
     tipoEscola,
     detalhamento,
-    totalPosts
+    totalPosts,
+    totalComentarios,
+    ultimosPosts
 }

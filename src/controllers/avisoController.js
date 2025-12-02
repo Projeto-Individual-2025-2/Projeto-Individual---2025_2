@@ -215,6 +215,34 @@ function deletar(req, res) {
         })
 }
 
+    function totalComentarios(req, res) {
+        var idUsuario = req.params.idUsuario;
+
+        avisoModel.totalComentarios(idUsuario)
+        .then(function (resultado){
+            res.status(200).json({
+                total: resultado[0].total
+            });
+        }) 
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
+    function ultimosPosts(req, res) {
+        var idUsuario = req.params.idUsuario;
+
+        avisoModel.ultimosPosts(idUsuario)
+        .then(function (resultado){
+            res.status(200).json(resultado);
+        }) 
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
@@ -226,5 +254,7 @@ module.exports = {
     faixaEtaria,
     tipoEscola,
     detalhamento,
-    totalPosts
+    totalPosts,
+    totalComentarios,
+    ultimosPosts
 }

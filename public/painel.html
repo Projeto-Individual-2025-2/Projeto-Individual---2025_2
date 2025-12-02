@@ -78,13 +78,18 @@
             <div class="kpi">
                 <h2>Seu Perfil</h2>
                 <div class="card-1">
-                    <h3>Total de comentários</h3>
-                    <div id="kpiComentarios">0</div>
+                    <h3>Total de Postagens</h3>
+                    <div id="totalPostagens"></div>
                 </div>
 
                 <div class="card-2">
-                    <h3>Comentário mais respondido</h3>
-                    <p id="comentarioTop">"Minha experiência...(30 respostas)"</p>
+                    <h3>Total de comentários</h3>
+                    <p id="totalComentarios"></p>
+                </div>
+
+                <div class="card-2">
+                    <h3>Últimas Duas Postagens</h3>
+                    <p id="ultimosPosts"></p>
                 </div>
 
             </div>
@@ -100,8 +105,9 @@
         carregarFaixaEtaria();
         carregarTipoEscola();
         carregarDetalhamento();
-        carregarKpiComentarios();
-
+        carregarTotalPosts();
+        carregarTotalComentarios();
+        carregarUltimosPosts();
     }
 
     function carregarFaixaEtaria() {
@@ -205,13 +211,38 @@
     });
 }
 
-    function carregarKpiComentarios() {
+    function carregarTotalPosts() {
         var idUsuario = sessionStorage.ID_USUARIO;
 
         fetch(`/avisos/total-posts/${idUsuario}`)
         .then(r => r.json())
         .then(d=>{
-            document.getElementById("kpiComentarios").innerHTML = d.total;
+            document.getElementById("totalPostagens").innerHTML = d.total;
         });
     }
+
+    function carregarTotalComentarios() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/avisos/total-comentarios/${idUsuario}`)
+        .then(r => r.json())
+        .then(d=>{
+            document.getElementById("totalComentarios").innerHTML = d.total;
+        });
+    }
+
+    function carregarUltimosPosts() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/avisos/ultimos-posts/${idUsuario}`)
+        .then(r => r.json())
+        .then(d=>{
+            var ultimos = document.getElementById('ultimosPosts');
+            
+            for (var i = 0; i < d.length; i++) {
+                ultimos.innerHTML += '"' + d[i].assunto + '"' + "<br><br>";
+            }
+        });
+    }
+
 </script>    

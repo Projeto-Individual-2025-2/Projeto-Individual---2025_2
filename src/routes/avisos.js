@@ -47,4 +47,12 @@ router.get("/total-posts/:idUsuario", function (req, res){
     avisoController.totalPosts(req, res);
 });
 
+router.get("/total-comentarios/:idUsuario", function (req, res){
+    avisoController.totalComentarios(req, res);
+});
+
+router.get("/ultimos-posts/:idUsuario", function (req, res){
+    avisoController.ultimosPosts(req, res);
+});
+
 module.exports = router;
