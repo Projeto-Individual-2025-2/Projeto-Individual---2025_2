@@ -12,7 +12,7 @@ function listar() {
             u.nome,
             a.fkPostagemPai
         FROM Postagem a
-        JOIN usuario u ON a.fkUsuario = u.idUsuario
+        JOIN Usuario u ON a.fkUsuario = u.idUsuario
         ORDER BY 
         CASE 
         WHEN a.fkPostagemPai IS NULL THEN 0
@@ -37,7 +37,7 @@ function pesquisarDescricao(texto) {
             u.email,
             u.senha
         FROM Postagem a
-            INNER JOIN usuario u
+            INNER JOIN Usuario u
                 ON a.fkUsuario = u.idUsuario
         WHERE a.conteudo LIKE '${texto}';
     `;
@@ -58,7 +58,7 @@ function listarPorUsuario(idUsuario) {
             u.email,
             u.senha
         FROM Postagem a
-            INNER JOIN usuario u
+            INNER JOIN Usuario u
                 ON a.fkUsuario = u.idUsuario
         WHERE u.idUsuario = ${idUsuario};
     `;
@@ -87,7 +87,7 @@ function publicarResposta(assunto, descricao, idUsuario, fkPostagemPai) {
 function editar(novaDescricao, idPostagem) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idPostagem);
     var instrucaoSql = `
-        UPDATE postagem SET conteudo = '${novaDescricao}' WHERE idPostagem = ${idPostagem};
+        UPDATE Postagem SET conteudo = '${novaDescricao}' WHERE idPostagem = ${idPostagem};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
