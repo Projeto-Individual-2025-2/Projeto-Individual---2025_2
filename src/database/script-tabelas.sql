@@ -1,4 +1,3 @@
--- Scripts ConectUs Projeto Individual 2025_2
 create database Conectus;
 
 use Conectus;
@@ -7,6 +6,11 @@ create table Instituicao(
 idInstituicao int primary key,
 nomeInst varchar(45) 
 );
+
+insert into Instituicao values
+	(1, 'Ismart'),
+	(2, 'Colegio'),
+	(3, 'Cuja');
 
 create table Usuario(
 idUsuario int primary key auto_increment,
@@ -17,7 +21,7 @@ tipoEscola enum('publica', 'privada') not null,
 conhecimento enum('Sim', 'Nao') not null,
 detalhamento varchar(45) null,
 senha varchar(45) not null,
-fkInstituicao int unique,
+fkInstituicao int,
 constraint fkInstituicaoUsuario
 	foreign key (fkInstituicao)
 		references Instituicao(idInstituicao)
@@ -25,8 +29,8 @@ constraint fkInstituicaoUsuario
 
 create table Postagem(
 idPostagem int primary key auto_increment,
-assunto varchar(45),
-conteudo varchar(250),
+assunto varchar(45) not null,
+conteudo varchar(250) not null,
 fkUsuario int,
 constraint fkUsuarioPostagem
 	foreign key (fkUsuario)
@@ -36,26 +40,3 @@ constraint fkPostagemPaiPostagem
 	foreign key (fkPostagemPai)
 		references Postagem(idPostagem)
 );
-
-select * from Usuario;
-
-select * from postagem;
-
-select * from resposta;
-
--- Gráfico de Barras
-select count(dtNasc) from Usuario where dtNasc <= '2013-01-01' and dtNasc >= '2009-01-01';
-select count(dtNasc) from Usuario where dtNasc <= '2008-01-01' and dtNasc >= '2004-01-01';
-select count(dtNasc) from Usuario where dtNasc <= '2003-01-01';
-
--- Gráfico de pizza
-select count(tipoEscola) from Usuario where tipoEscola = 'Privada';
-select count(tipoEscola) from Usuario where tipoEscola = 'Pública';
-
--- Gráfico de Donuts
-select count(detalhamento) from Usuario where detalhamento = 'Colegio';
-select count(detalhamento) from Usuario where detalhamento = 'Ismart';
-select count(detalhamento) from Usuario where detalhamento = 'Cuja';
-
--- KPI total de comentários
-select count(idPostagem) from Postagem where fkUsuario = 2;
